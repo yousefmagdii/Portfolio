@@ -1,0 +1,189 @@
+/* Custom Circular Cursor with Spotlight Effect */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.1s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.15s ease;
+  transform: translate(-50%, -50%);
+}
+
+/* Spotlight Effect */
+.spotlight-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.06) 0%,
+    rgba(139, 92, 246, 0.04) 15%,
+    rgba(255, 255, 255, 0.02) 30%,
+    rgba(255, 255, 255, 0.01) 45%,
+    rgba(255, 255, 255, 0.005) 60%,
+    rgba(255, 255, 255, 0.003) 75%,
+    rgba(255, 255, 255, 0.001) 85%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9997;
+  transition: all 0.2s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  opacity: 0.8;
+}
+
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Hover states */
+.custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.3),
+    0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+.custom-cursor-follower.hovering {
+  width: 15px;
+  height: 15px;
+  background: rgba(255, 255, 255, 1);
+}
+
+.spotlight-effect.hovering {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.08) 0%,
+    rgba(139, 92, 246, 0.06) 15%,
+    rgba(255, 255, 255, 0.03) 30%,
+    rgba(255, 255, 255, 0.015) 45%,
+    rgba(255, 255, 255, 0.008) 60%,
+    rgba(255, 255, 255, 0.004) 75%,
+    rgba(255, 255, 255, 0.002) 85%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(10px);
+  opacity: 0.85;
+}
+
+/* Clicked state */
+.custom-cursor.clicking {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+  box-shadow:
+    0 0 30px rgba(59, 130, 246, 0.5),
+    0 0 60px rgba(139, 92, 246, 0.3);
+}
+
+.custom-cursor-follower.clicking {
+  width: 25px;
+  height: 25px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.spotlight-effect.clicking {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(139, 92, 246, 0.08) 20%,
+    rgba(255, 255, 255, 0.04) 35%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.01) 65%,
+    rgba(255, 255, 255, 0.005) 80%,
+    rgba(255, 255, 255, 0.002) 90%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(6px);
+  opacity: 0.9;
+}
+
+/* Text selection state */
+.custom-cursor.text-hover {
+  width: 2px;
+  height: 30px;
+  border-radius: 1px;
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+}
+
+/* Loading state animation */
+@keyframes pulse-cursor {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.custom-cursor.loading {
+  animation: pulse-cursor 1s infinite;
+}
+
+/* Smooth transitions for better performance */
+.custom-cursor,
+.custom-cursor-follower,
+.spotlight-effect {
+  will-change: transform;
+}
+
+/* Mobile devices - show default cursor */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-follower,
+  .spotlight-effect {
+    display: none !important;
+  }
+
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor,
+  .custom-cursor-follower,
+  .spotlight-effect {
+    transition: none;
+    animation: none;
+  }
+}
