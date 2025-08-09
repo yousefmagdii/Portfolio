@@ -1,5 +1,4 @@
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -22,21 +21,43 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitMessage("");
 
     try {
-      const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      // Validate required fields
+      if (!formData.name || !formData.email || !formData.message) {
+        throw new Error("Please fill in all required fields.");
+      }
 
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        to_email: "yousef0magdi1@gmail.com",
-        subject: formData.subject,
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        throw new Error("Please enter a valid email address.");
+      }
+
+      // Using Formspree
+      const formId = import.meta.env.VITE_FORMSPREE_FORM_ID || "manbaeda";
+      const formspreeUrl = `https://formspree.io/f/${formId}`;
+
+      const requestBody = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject || "Contact Form Submission",
         message: formData.message,
+        _replyto: formData.email,
       };
 
-      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      const response = await fetch(formspreeUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       setIsSubmitting(false);
       setSubmitMessage(
@@ -48,11 +69,44 @@ function Contact() {
     } catch (error) {
       console.error("Failed to send email:", error);
       setIsSubmitting(false);
-      setSubmitMessage(
-        "Sorry, there was an error sending your message. Please try again or contact me directly at yousef0magdi1@gmail.com"
-      );
 
-      setTimeout(() => setSubmitMessage(""), 8000);
+      let errorMessage =
+        "Sorry, there was an error sending your message. Please try again or contact me directly at yousef0magdi1@gmail.com";
+
+      // Provide more specific error messages
+      if (error.message) {
+        if (
+          error.message.includes("required fields") ||
+          error.message.includes("valid email")
+        ) {
+          errorMessage = error.message;
+        } else if (
+          error.message.includes("network") ||
+          error.message.includes("Failed to fetch")
+        ) {
+          errorMessage =
+            "Network error. Please check your internet connection and try again.";
+        } else if (error.message.includes("400")) {
+          errorMessage =
+            "Invalid request. Please check your information and try again.";
+        } else if (
+          error.message.includes("403") ||
+          error.message.includes("401")
+        ) {
+          errorMessage =
+            "Form submission not authorized. Please contact me directly at yousef0magdi1@gmail.com";
+        } else if (error.message.includes("404")) {
+          errorMessage =
+            "Form not found. Please contact me directly at yousef0magdi1@gmail.com";
+        } else if (error.message.includes("500")) {
+          errorMessage =
+            "Server error. Please try again later or contact me directly at yousef0magdi1@gmail.com";
+        }
+      }
+
+      setSubmitMessage(errorMessage);
+
+      setTimeout(() => setSubmitMessage(""), 10000);
     }
   };
 
