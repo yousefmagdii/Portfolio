@@ -7,7 +7,6 @@ function Navbar({ currentSection, onNavigate, sections }) {
   const [logoAnimationComplete, setLogoAnimationComplete] = useState(false);
   const location = useLocation();
 
-  // Reset animation when component mounts or page refreshes
   useEffect(() => {
     setLogoAnimationComplete(false);
   }, []);
@@ -32,7 +31,6 @@ function Navbar({ currentSection, onNavigate, sections }) {
               onClick={() => handleNavClick(0)}
               className="flex items-center space-x-3"
             >
-              {/* Logo Animation */}
               <motion.img
                 src="/Logo.webp"
                 alt="Youssef Magdy Logo"

@@ -9,32 +9,26 @@ function Home() {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [startTypewriter, setStartTypewriter] = useState(false);
 
-  const mainText = "Hi, I'm a Front-End Developer";
+  const mainText = "Hi, I'm Youssef Magdy";
   const subtitleText =
-    "I'm Yousef I build beautiful, fast, and accessible web experiences.";
-
-  // Handle image load
+    "Front-End Developer creating fast, and accessible web experiences";
   const handleImageLoad = () => {
     setImageLoaded(true);
-    // Start typewriter effect after image loads with a small delay
     setTimeout(() => setStartTypewriter(true), 300);
   };
 
-  // Main title typewriter effect - only start after image loads
   useEffect(() => {
     if (startTypewriter && currentIndex < mainText.length) {
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + mainText[currentIndex]);
         setCurrentIndex((prev) => prev + 1);
-      }, 100); // Adjust speed here (lower = faster)
+      }, 100);
       return () => clearTimeout(timeout);
     } else if (startTypewriter && currentIndex >= mainText.length) {
-      // Start subtitle after main text is complete
       setTimeout(() => setShowSubtitle(true), 500);
     }
   }, [startTypewriter, currentIndex, mainText]);
 
-  // Subtitle typewriter effect
   useEffect(() => {
     if (showSubtitle && subtitleIndex < subtitleText.length) {
       const timeout = setTimeout(() => {
@@ -50,12 +44,7 @@ function Home() {
       <div className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center relative w-full max-w-4xl">
           <div className="relative group flex justify-center">
-            {/* Loading placeholder */}
-            {!imageLoaded && (
-              <div className="">
-                {/* <div className="text-gray-400">Loading...</div> */}
-              </div>
-            )}
+            {!imageLoaded && <div className=""></div>}
 
             <img
               src="/HomeImg.webp"

@@ -24,7 +24,6 @@ function Contact() {
     setIsSubmitting(true);
 
     try {
-      // EmailJS configuration
       const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -45,7 +44,6 @@ function Contact() {
       );
       setFormData({ name: "", email: "", subject: "", message: "" });
 
-      // Clear success message after 5 seconds
       setTimeout(() => setSubmitMessage(""), 5000);
     } catch (error) {
       console.error("Failed to send email:", error);
@@ -54,7 +52,6 @@ function Contact() {
         "Sorry, there was an error sending your message. Please try again or contact me directly at yousef0magdi1@gmail.com"
       );
 
-      // Clear error message after 8 seconds
       setTimeout(() => setSubmitMessage(""), 8000);
     }
   };
@@ -62,7 +59,6 @@ function Contact() {
   return (
     <div className="w-full bg-[#040302] pt-20">
       <div className="container mx-auto px-4 py-16 pb-8">
-        {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
             Get In Touch
@@ -74,7 +70,6 @@ function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold text-white mb-6">
@@ -87,7 +82,6 @@ function Contact() {
               </p>
             </div>
 
-            {/* Contact Details */}
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
@@ -162,7 +156,6 @@ function Contact() {
               </div>
             </div>
 
-            {/* Social Links */}
             <div>
               <h3 className="text-white font-medium mb-4">Follow Me</h3>
               <div className="flex space-x-4">
@@ -198,7 +191,6 @@ function Contact() {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-800">
             <h2 className="text-2xl font-bold text-white mb-6">
               Send a Message

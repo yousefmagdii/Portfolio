@@ -4,30 +4,29 @@ function StarBackground() {
   const [stars, setStars] = useState([]);
 
   useEffect(() => {
-    // Generate stars only on the edges
     const generateEdgeStars = () => {
       const starArray = [];
-      const numStars = 60; // Not too many stars
+      const numStars = 60;
 
       for (let i = 0; i < numStars; i++) {
-        const edge = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
+        const edge = Math.floor(Math.random() * 4);
         let x, y;
 
         switch (edge) {
-          case 0: // Top edge
+          case 0:
             x = Math.random() * 100;
-            y = Math.random() * 15; // Only top 15% of screen
+            y = Math.random() * 15;
             break;
-          case 1: // Right edge
-            x = 85 + Math.random() * 15; // Only right 15% of screen
+          case 1:
+            x = 85 + Math.random() * 15;
             y = Math.random() * 100;
             break;
-          case 2: // Bottom edge
+          case 2:
             x = Math.random() * 100;
-            y = 85 + Math.random() * 15; // Only bottom 15% of screen
+            y = 85 + Math.random() * 15;
             break;
-          case 3: // Left edge
-            x = Math.random() * 15; // Only left 15% of screen
+          case 3:
+            x = Math.random() * 15;
             y = Math.random() * 100;
             break;
         }
@@ -36,8 +35,8 @@ function StarBackground() {
           id: i,
           x,
           y,
-          size: Math.random() * 2 + 1, // Small stars (1-3px)
-          opacity: Math.random() * 0.6 + 0.3, // 0.3 to 0.9 opacity
+          size: Math.random() * 2 + 1,
+          opacity: Math.random() * 0.6 + 0.3,
           twinkleDelay: Math.random() * 4,
         });
       }
@@ -49,7 +48,6 @@ function StarBackground() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Stars */}
       {stars.map((star) => (
         <div
           key={star.id}

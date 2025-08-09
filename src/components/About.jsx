@@ -15,20 +15,19 @@ function About() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="text-2xl md:text-3xl font-semibold text-white">
-                Hi, I'm a Frontend Developer
+                My Story as a Developer
               </h2>
               <p className="text-gray-300 leading-relaxed">
-                I'm a passionate frontend developer with over 1 year of
-                professional experience building modern, responsive web
-                applications. I specialize in creating intuitive user interfaces
-                and seamless user experiences using cutting-edge technologies.
+                Frontend Developer with over 1 year of professional experience
+                building modern, responsive web applications. Passionate about
+                designing intuitive interfaces and delivering seamless user
+                experiences using the latest technologies.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                My expertise lies in React ecosystem and state management, where
-                I've built scalable applications with clean, maintainable code.
-                I'm dedicated to writing efficient, performance-optimized
-                solutions and staying current with the latest frontend
-                development trends.
+                Specialized in the React ecosystem and state management, with
+                hands-on experience creating scalable, maintainable
+                applications. Focused on writing clean, performance-optimized
+                code and always eager to learn and adopt new frontend trends.
               </p>
               <div className="flex flex-wrap gap-3">
                 <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
