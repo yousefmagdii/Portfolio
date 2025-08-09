@@ -29,7 +29,7 @@ function Education() {
     },
     {
       name: "JavaScript Programming",
-      issuer: "University of Michigan",
+      issuer: "University of Michigan (Coursera)",
       date: "2021",
       credentialId: "9RNHJP7NPEQD",
       description:
@@ -38,7 +38,7 @@ function Education() {
     },
     {
       name: "HTML5 Web Development",
-      issuer: "University of Michigan",
+      issuer: "University of Michigan (Coursera)",
       date: "2021",
       credentialId: "EV8GPQ58M6JH",
       description:
@@ -47,7 +47,7 @@ function Education() {
     },
     {
       name: "CSS3 Styling and Layout",
-      issuer: "University of Michigan",
+      issuer: "University of Michigan (Coursera)",
       date: "2021",
       credentialId: "D53S28PL94AZ",
       description:
@@ -56,7 +56,7 @@ function Education() {
     },
     {
       name: "Responsive Web Design",
-      issuer: "University of Michigan",
+      issuer: "University of Michigan (Coursera)",
       date: "2021",
       credentialId: "EV8GPQ58M6JH",
       description:
