@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Navbar({ currentSection, onNavigate, sections }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [logoAnimationComplete, setLogoAnimationComplete] = useState(false);
   const location = useLocation();
+
+  // Reset animation when component mounts or page refreshes
+  useEffect(() => {
+    setLogoAnimationComplete(false);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,17 +32,41 @@ function Navbar({ currentSection, onNavigate, sections }) {
               onClick={() => handleNavClick(0)}
               className="flex items-center space-x-3"
             >
-              <img
+              {/* Logo Animation */}
+              <motion.img
                 src="/Logo.png"
                 alt="Youssef Magdy Logo"
                 className="h-10 w-10 rounded-full object-cover"
+                loading="lazy"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: 0.2,
+                }}
+                onAnimationComplete={() => setLogoAnimationComplete(true)}
               />
-              <h1 className="text-xl font-semibold text-white tracking-tight">
+
+              {/* Name Animation - appears after logo */}
+              <motion.h1
+                className="text-xl font-semibold text-white tracking-tight"
+                initial={{ x: -100, opacity: 0 }}
+                animate={{
+                  x: logoAnimationComplete ? 0 : -100,
+                  opacity: logoAnimationComplete ? 1 : 0,
+                }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: logoAnimationComplete ? 0.2 : 1.2,
+                }}
+              >
                 <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                   Youssef
                 </span>
                 Magdy
-              </h1>
+              </motion.h1>
             </button>
           </div>
 

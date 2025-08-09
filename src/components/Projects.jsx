@@ -10,7 +10,7 @@ function Projects() {
       description:
         "Movie & TV browser app with search, trailer viewing, and personal watchlist management. Built using React, Axios, and Tailwind with data fetched from movie APIs.",
       technologies: ["React", "Axios", "Tailwind CSS", "Movie API"],
-      image: "/Film-Fever.png",
+      image: "/Film-Fever.webp",
       liveUrl: "https://film-fever-omega.vercel.app/",
       githubUrl: "https://github.com/yousefmagdii/FilmFever",
     },
@@ -25,7 +25,7 @@ function Projects() {
         "Leaflet",
         "Tailwind CSS",
       ],
-      image: "/La_Dolce.png",
+      image: "/La_Dolce.webp",
       liveUrl: "https://la-dolce-vita-pizzas.vercel.app/",
       githubUrl: "https://github.com/yousefmagdii/La-Dolce-Vita-Pizzas",
     },
@@ -34,7 +34,7 @@ function Projects() {
       description:
         "Cabin booking platform with React Query and Supabase for dynamic booking and secure authentication. Modular compound components allow customization with dark mode and interactive charts.",
       technologies: ["React", "React Query", "Supabase", "Charts"],
-      image: "/The_Wild.png",
+      image: "/The_Wild.webp",
       liveUrl: "https://the-wild-oasis-sigma-teal.vercel.app/",
       githubUrl: "https://github.com/yousefmagdii/The-Wild-Oasis",
     },
@@ -43,7 +43,7 @@ function Projects() {
       description:
         "Movie & TV Show Ratings Website with rating/review capabilities using custom hooks and data fetching. Responsive design ensures seamless user experience across devices.",
       technologies: ["React", "Custom Hooks", "Responsive Design"],
-      image: "/Use_Popcorn.png",
+      image: "/Use_Popcorn.webp",
       liveUrl: "https://usepopcorn-teal.vercel.app/",
       githubUrl: "https://github.com/yousefmagdii/usepopcorn",
     },
@@ -52,7 +52,7 @@ function Projects() {
       description:
         "Online pizza store utilizing React, Redux, and dedicated Cart/Order pages for streamlined navigation. Real-time delivery tracking ensures an efficient and user-friendly experience.",
       technologies: ["React", "Redux", "Real-time Tracking"],
-      image: "/Fast_Pizza.png",
+      image: "/Fast_Pizza.webp",
       liveUrl: "https://fast-react-pizza-self.vercel.app/",
       githubUrl: "https://github.com/yousefmagdii/Fast-React-Pizza",
     },
@@ -104,6 +104,7 @@ function Projects() {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
 
@@ -175,6 +176,7 @@ function Projects() {
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                   <div className="text-center text-white">
