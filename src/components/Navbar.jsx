@@ -34,7 +34,7 @@ function Navbar({ currentSection, onNavigate, sections }) {
             >
               {/* Logo Animation */}
               <motion.img
-                src="/Logo.png"
+                src="/Logo.webp"
                 alt="Youssef Magdy Logo"
                 className="h-10 w-10 rounded-full object-cover"
                 loading="lazy"
@@ -48,7 +48,6 @@ function Navbar({ currentSection, onNavigate, sections }) {
                 onAnimationComplete={() => setLogoAnimationComplete(true)}
               />
 
-              {/* Name Animation - appears after logo */}
               <motion.h1
                 className="text-xl font-semibold text-white tracking-tight"
                 initial={{ x: -100, opacity: 0 }}
