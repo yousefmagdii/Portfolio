@@ -2,7 +2,14 @@ import { PROFILE } from "./_profile.js";
 
 // "Ask my AI" endpoint: POST { messages: [{ role: "user" | "assistant", content }] }
 // Needs GEMINI_API_KEY (free key from aistudio.google.com) in the environment.
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+// Tried in order; a model Google has retired answers 404, so we move on.
+// The "-latest" aliases follow Google's current free Flash models.
+const MODELS = [
+  process.env.GEMINI_MODEL,
+  "gemini-flash-latest",
+  "gemini-flash-lite-latest",
+  "gemini-2.5-flash",
+].filter(Boolean);
 const MAX_TURNS = 8;
 const MAX_CHARS = 600;
 const PER_MINUTE = 8;
@@ -89,24 +96,31 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Send a question to ask." });
   }
 
-  try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-          contents: messages.map((m) => ({
-            role: m.role === "assistant" ? "model" : "user",
-            parts: [{ text: m.content }],
-          })),
-          generationConfig: { temperature: 0.4, maxOutputTokens: 400 },
-        }),
-      },
-    );
+  const payload = JSON.stringify({
+    system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+    contents: messages.map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    })),
+    generationConfig: { temperature: 0.4, maxOutputTokens: 400 },
+  });
 
-    const data = await response.json().catch(() => ({}));
+  try {
+    let response;
+    let data;
+    for (const model of MODELS) {
+      response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+          body: payload,
+        },
+      );
+      data = await response.json().catch(() => ({}));
+      if (response.status !== 404) break;
+    }
+
     if (!response.ok) {
       console.error("Gemini error", response.status, data?.error?.message);
       const busy = response.status === 429;
