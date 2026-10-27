@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cruxgarden/plasma-ui": "^0.8.0",
     "@tailwindcss/postcss": "^4.1.11",
     "framer-motion": "^12.23.12",
     "react": "^19.1.0",

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PlasmaProvider, PlasmaCanvas, Plasma } from "@cruxgarden/plasma-ui";
 
 const stats = [
   {
@@ -119,42 +118,10 @@ function useCountUp(from, to, duration = 1600, delay = 0) {
   return value;
 }
 
-// Plasma is GPU-heavy, so the liquid glass only runs on wide screens with a
-// mouse and normal motion settings; everything else gets the plain cards.
-// A custom Plasma mood in the site's dark blue and purple, instead of the
-// built-in green "aurora".
-const portfolioMood = {
-  colors: ["#05040c", "#1e1b4b", "#7c3aed"],
-  blend: 12,
-  spring: { stiffness: 170, damping: 22 },
-};
+const glassCard =
+  "bg-white/[0.04] backdrop-blur-md border border-white/10 shadow-xl shadow-purple-950/20";
 
-const PLASMA_QUERY =
-  "(min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference)";
-
-function usePlasmaEnabled() {
-  const [enabled, setEnabled] = useState(
-    () => window.matchMedia?.(PLASMA_QUERY).matches ?? false,
-  );
-
-  useEffect(() => {
-    const media = window.matchMedia?.(PLASMA_QUERY);
-    if (!media) return;
-    const update = () => setEnabled(media.matches);
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  return enabled;
-}
-
-// A Plasma surface when the glass is on, otherwise a plain div.
-function Surface({ plasma, plainClassName, children, ...plasmaProps }) {
-  if (plasma) return <Plasma {...plasmaProps}>{children}</Plasma>;
-  return <div className={plainClassName}>{children}</div>;
-}
-
-function StatCard({ stat, index, plasma }) {
+function StatCard({ stat, index }) {
   const value = useCountUp(stat.from, stat.to, 1600, 300 + index * 150);
   const improved = stat.from !== 0;
 
@@ -165,14 +132,12 @@ function StatCard({ stat, index, plasma }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
     >
-      <Surface
-        plasma={plasma}
-        plainClassName="h-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-5 rounded-xl border border-white/10 hover:border-blue-500/30 transition-colors duration-300"
-        className="h-full cursor-grab active:cursor-grabbing select-none"
-        padding={20}
-        radius={20}
-        draggable
-        group="stats"
+      <motion.div
+        drag
+        dragSnapToOrigin
+        dragElastic={0.35}
+        whileDrag={{ scale: 1.05, zIndex: 20 }}
+        className={`relative h-full p-5 rounded-2xl cursor-grab active:cursor-grabbing select-none hover:border-blue-400/30 transition-colors duration-300 ${glassCard}`}
       >
         <p className="text-gray-400 text-sm mb-2">{stat.label}</p>
         <p className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent tabular-nums">
@@ -191,7 +156,7 @@ function StatCard({ stat, index, plasma }) {
         <p className="text-gray-300 text-xs mt-3 leading-relaxed">
           {stat.note}
         </p>
-      </Surface>
+      </motion.div>
     </motion.div>
   );
 }
@@ -232,16 +197,17 @@ function Connector() {
 
 function FeaturedWork() {
   const [active, setActive] = useState("ai");
-  const plasma = usePlasmaEnabled();
 
-  const content = (
-    <div className="w-full bg-[#040302]">
-      {plasma && (
-        <PlasmaCanvas
-          zIndex={0}
-          style={{ position: "fixed", inset: 0, pointerEvents: "none" }}
-        />
-      )}
+  return (
+    <div className="relative w-full bg-[#040302] overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 45% at 20% 25%, rgba(124, 58, 237, 0.18), transparent 70%), radial-gradient(ellipse 55% 45% at 85% 75%, rgba(59, 130, 246, 0.14), transparent 70%)",
+        }}
+      />
       <div className="relative z-10 pt-20 px-4 sm:px-6 lg:px-8 pb-8">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -259,18 +225,15 @@ function FeaturedWork() {
             </p>
           </motion.div>
 
-          {plasma && (
-            <p className="text-center text-xs text-gray-400 -mt-8 mb-4">
-              Liquid glass: drag the cards and watch them fuse
-            </p>
-          )}
+          <p className="text-center text-xs text-gray-400 -mt-8 mb-4">
+            Drag the cards around, they spring back
+          </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
             {stats.map((stat, index) => (
               <StatCard
                 key={stat.label}
                 stat={stat}
                 index={index}
-                plasma={plasma}
               />
             ))}
           </div>
@@ -282,20 +245,8 @@ function FeaturedWork() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Surface
-                plasma={plasma}
-                plainClassName="relative p-5 sm:p-6 rounded-2xl border border-dashed border-blue-400/30 bg-gradient-to-br from-blue-500/5 to-purple-500/5"
-                padding={24}
-                lean={false}
-                frost={0.25}
-              >
-                <span
-                  className={
-                    plasma
-                      ? "block mb-4 text-xs uppercase tracking-wider text-blue-200"
-                      : "absolute -top-3 left-5 px-2 bg-[#040302] text-xs uppercase tracking-wider text-blue-300"
-                  }
-                >
+              <div className={`relative p-5 sm:p-6 rounded-2xl ${glassCard}`}>
+                <span className="block mb-4 text-xs uppercase tracking-wider text-blue-200">
                   GCP Cloud Run
                 </span>
 
@@ -336,7 +287,7 @@ function FeaturedWork() {
                     ))}
                   </div>
                 </div>
-              </Surface>
+              </div>
             </motion.div>
 
             <motion.div
@@ -345,13 +296,7 @@ function FeaturedWork() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Surface
-                plasma={plasma}
-                plainClassName="min-h-[150px] bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-6 rounded-xl border border-white/10"
-                className="min-h-[150px]"
-                padding={24}
-                lean={6}
-              >
+              <div className={`min-h-[150px] p-6 rounded-2xl ${glassCard}`}>
                 <p className="text-xs uppercase tracking-wider text-gray-500 mb-2">
                   Hover or tap a service
                 </p>
@@ -371,7 +316,7 @@ function FeaturedWork() {
                     </p>
                   </motion.div>
                 </AnimatePresence>
-              </Surface>
+              </div>
 
               <ul className="space-y-3">
                 {highlights.map((item) => (
@@ -389,23 +334,6 @@ function FeaturedWork() {
         </div>
       </div>
     </div>
-  );
-
-  if (!plasma) return content;
-
-  return (
-    <PlasmaProvider
-      mood={portfolioMood}
-      theme="dark"
-      canvas={false}
-      frost={0.1}
-      elevation={0.4}
-      grain={0.6}
-      pointerDrop={false}
-      maxSurfaces={8}
-    >
-      {content}
-    </PlasmaProvider>
   );
 }
 
