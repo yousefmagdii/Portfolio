@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="title"><title id="title">Yousef Magdy logo</title>
+<defs><linearGradient id="ym" gradientUnits="userSpaceOnUse" x1="32" y1="32" x2="224" y2="224"><stop offset="0" stop-color="#60A5FA"/><stop offset="1" stop-color="#A855F7"/></linearGradient></defs>
+<path fill="url(#ym)" d="M32 32 H62 L128 98 L194 32 H224 V208 H188 V89 L146 131 V224 H110 V131 L68 89 V208 H32 Z"/>
+</svg>

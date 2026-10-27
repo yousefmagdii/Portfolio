@@ -38,7 +38,8 @@ Portfolio/
 ├── public/
 │   ├── CV.pdf
 │   ├── *.png (project images)
-│   └── vite.svg
+│   ├── brand/ (logo masters: colour, gradient, small-size, black, white)
+│   └── favicon.svg, favicon.ico, site.webmanifest (web icon set)
 ├── src/
 │   ├── components/
 │   │   ├── About.jsx

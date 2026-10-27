@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import CvMenu, { cvs } from "./CvMenu";
+import LogoMark from "./LogoMark";
 
 function Navbar({ currentSection, onNavigate, sections }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,11 +33,8 @@ function Navbar({ currentSection, onNavigate, sections }) {
               onClick={() => handleNavClick(0)}
               className="flex items-center space-x-3"
             >
-              <motion.img
-                src="/Logo.webp"
-                alt="Yousef Magdy Logo"
-                className="h-10 w-10 rounded-full object-cover"
-                loading="lazy"
+              <motion.span
+                className="h-9 w-9 flex items-center justify-center"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{
@@ -45,7 +43,9 @@ function Navbar({ currentSection, onNavigate, sections }) {
                   delay: 0.2,
                 }}
                 onAnimationComplete={() => setLogoAnimationComplete(true)}
-              />
+              >
+                <LogoMark className="h-9 w-9" />
+              </motion.span>
 
               <motion.h1
                 className="text-xl font-semibold text-white tracking-tight"
@@ -62,7 +62,7 @@ function Navbar({ currentSection, onNavigate, sections }) {
               >
                 <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                   Yousef
-                </span>
+                </span>{" "}
                 Magdy
               </motion.h1>
             </button>
