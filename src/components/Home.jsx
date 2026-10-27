@@ -48,7 +48,7 @@ function Home() {
             {!imageLoaded && <div className=""></div>}
 
             <img
-              src="/HomeImg-new.jpeg"
+              src="/HomeImg-newest.png"
               alt="Yousef Magdy"
               className={`hero-photo w-[90%] sm:w-[70%] md:w-[60%] max-h-[calc(100vh-8rem)] object-contain p-1 relative z-10 transition-opacity duration-500 ${
                 imageLoaded ? "opacity-100" : "opacity-0 absolute"

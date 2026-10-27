@@ -230,13 +230,13 @@ html {
 
 /* Hero portrait: black & white, fades into the page background */
 .hero-photo {
-  filter: grayscale(1) contrast(1.1) brightness(0.78);
+  filter: grayscale(1);
   -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 45%, transparent 92%),
-    radial-gradient(ellipse 50% 58% at 50% 42%, #000 45%, transparent 100%);
+    linear-gradient(to bottom, #000 55%, transparent 96%),
+    radial-gradient(ellipse 72% 85% at 50% 38%, #000 60%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 45%, transparent 92%),
-    radial-gradient(ellipse 50% 58% at 50% 42%, #000 45%, transparent 100%);
+    linear-gradient(to bottom, #000 55%, transparent 96%),
+    radial-gradient(ellipse 72% 85% at 50% 38%, #000 60%, transparent 100%);
   mask-composite: intersect;
 }
