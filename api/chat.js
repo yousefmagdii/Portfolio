@@ -114,6 +114,8 @@ export default async function handler(req, res) {
         error: busy
           ? "The assistant is busy right now. Please try again in a minute."
           : "The assistant couldn't answer just now. Please try again.",
+        // Google's generic status (e.g. PERMISSION_DENIED), for debugging.
+        upstream: { status: response.status, reason: data?.error?.status },
       });
     }
 
