@@ -12,6 +12,7 @@ import Education from "./Education";
 import Contact from "./Contact";
 import CustomCursor from "./CustomCursorNew";
 import StarBackground from "./StarBackground";
+import AskAI from "./AskAI";
 
 const sections = [
   { id: "home", path: "/", component: Home, name: "Home" },
@@ -159,6 +160,10 @@ function ScrollPortfolio() {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (isScrolling) return;
+      // Leave arrow and Home/End keys alone while someone is typing.
+      if (e.target.closest?.("input, textarea, select, [contenteditable]")) {
+        return;
+      }
 
       switch (e.key) {
         case "ArrowDown":
@@ -216,6 +221,7 @@ function ScrollPortfolio() {
     <div className="min-h-screen bg-[#040302] w-full overflow-hidden relative">
       <StarBackground />
       <CustomCursor />
+      <AskAI />
       <Navbar
         currentSection={currentSection}
         onNavigate={navigateToSection}
