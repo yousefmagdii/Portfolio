@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ConnectDock from "./ConnectDock";
 
 function Home() {
   const [displayedText, setDisplayedText] = useState("");
@@ -16,6 +17,12 @@ function Home() {
     setImageLoaded(true);
     setTimeout(() => setStartTypewriter(true), 300);
   };
+
+  // Don't let a slow photo hold the intro hostage: start typing anyway.
+  useEffect(() => {
+    const fallback = setTimeout(() => setStartTypewriter(true), 900);
+    return () => clearTimeout(fallback);
+  }, []);
 
   useEffect(() => {
     if (startTypewriter && currentIndex < mainText.length) {
@@ -47,17 +54,20 @@ function Home() {
             {!imageLoaded && <div className=""></div>}
 
             <img
-              src="/HomeImg.webp"
-              alt="Profile"
-              className={`w-[50%] object-cover p-1 relative z-10 transition-opacity duration-500 ${
-                imageLoaded ? "opacity-100" : "opacity-0 absolute"
+              src="/HomeImg-newest.webp"
+              alt="Yousef Magdy"
+              width={1202}
+              height={1309}
+              className={`hero-photo w-[90%] sm:w-[70%] md:w-[60%] h-auto max-h-[calc(100vh-8rem)] object-contain p-1 relative z-10 transition-opacity duration-500 ${
+                imageLoaded ? "opacity-100" : "opacity-0"
               }`}
-              loading="lazy"
+              fetchPriority="high"
+              decoding="async"
               onLoad={handleImageLoad}
             />
           </div>
 
-          <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 z-20 w-full">
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 z-20 w-full">
             {startTypewriter && (
               <>
                 <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent min-h-[80px] flex items-center justify-center w-full">
@@ -77,34 +87,13 @@ function Home() {
                   )}
                 </div>
 
-                {subtitleIndex >= subtitleText.length && (
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
-                    <a
-                      href="/CV.pdf"
-                      download="Yousef_Magdy_CV.pdf"
-                      className="cursor-pointer relative bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl overflow-hidden group inline-block text-center"
-                    >
-                      <span className="relative z-10">Download CV</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out"></div>
-                    </a>
-                    <div className="text-gray-400 text-sm flex items-center justify-center">
-                      <span>Scroll down to explore more</span>
-                      <svg
-                        className="w-4 h-4 ml-2 animate-bounce"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                        />
-                      </svg>
+                <div className="min-h-[56px] sm:min-h-[70px] flex justify-center">
+                  {subtitleIndex >= subtitleText.length && (
+                    <div className="animate-fade-in-up">
+                      <ConnectDock />
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </>
             )}
           </div>
