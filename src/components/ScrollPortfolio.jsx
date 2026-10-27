@@ -114,8 +114,8 @@ function ScrollPortfolio() {
       }
     }
 
-    e.preventDefault();
-
+    // No preventDefault here: React's wheel listener is passive, so it can't
+    // cancel scrolling and only logs an error. The container is overflow-hidden.
     const now = Date.now();
     if (isScrolling || now - lastScrollTime.current < 1000) return;
 

@@ -18,6 +18,12 @@ function Home() {
     setTimeout(() => setStartTypewriter(true), 300);
   };
 
+  // Don't let a slow photo hold the intro hostage: start typing anyway.
+  useEffect(() => {
+    const fallback = setTimeout(() => setStartTypewriter(true), 900);
+    return () => clearTimeout(fallback);
+  }, []);
+
   useEffect(() => {
     if (startTypewriter && currentIndex < mainText.length) {
       const timeout = setTimeout(() => {
@@ -48,12 +54,15 @@ function Home() {
             {!imageLoaded && <div className=""></div>}
 
             <img
-              src="/HomeImg-newest.png"
+              src="/HomeImg-newest.webp"
               alt="Yousef Magdy"
-              className={`hero-photo w-[90%] sm:w-[70%] md:w-[60%] max-h-[calc(100vh-8rem)] object-contain p-1 relative z-10 transition-opacity duration-500 ${
-                imageLoaded ? "opacity-100" : "opacity-0 absolute"
+              width={1202}
+              height={1309}
+              className={`hero-photo w-[90%] sm:w-[70%] md:w-[60%] h-auto max-h-[calc(100vh-8rem)] object-contain p-1 relative z-10 transition-opacity duration-500 ${
+                imageLoaded ? "opacity-100" : "opacity-0"
               }`}
-              loading="lazy"
+              fetchPriority="high"
+              decoding="async"
               onLoad={handleImageLoad}
             />
           </div>
