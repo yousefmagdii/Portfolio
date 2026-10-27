@@ -3,34 +3,71 @@ import { motion } from "framer-motion";
 function Skills() {
   const skillCategories = [
     {
-      title: "Frontend",
+      title: "AI & LLM",
       skills: [
-        "React.js",
-        "Redux",
-        "JavaScript",
-        "HTML5",
-        "CSS3",
-        "Tailwind",
-        "Bootstrap",
-        "Angular",
+        "LangGraph",
+        "RAG",
+        "Agent Pipelines",
+        "Embeddings (bge-m3)",
+        "pgvector",
+        "OpenAI",
+        "Anthropic Claude",
+        "Gemini",
+        "Ollama",
       ],
     },
     {
-      title: "Version Control",
-      skills: ["Git", "GitHub"],
+      title: "Languages",
+      skills: ["Python", "C#", "TypeScript", "JavaScript (ES6+)", "SQL"],
     },
     {
-      title: "Backend Basics",
-      skills: ["REST APIs", "SQL", "MySQL"],
-    },
-    {
-      title: "Tools",
+      title: "Backend & Data",
       skills: [
-        "Axios",
-        "Supabase",
-        "Firebase",
-        "Leaflet",
+        ".NET 8",
+        "ASP.NET Core",
+        "FastAPI",
+        "Node.js",
+        "Express.js",
+        "REST API Design",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+      ],
+    },
+    {
+      title: "Frontend",
+      skills: [
+        "React",
+        "Next.js",
+        "Redux Toolkit",
+        "Tailwind CSS",
         "Ant Design",
+        "Micro Frontends",
+        "HTML5",
+        "CSS3",
+      ],
+    },
+    {
+      title: "Cloud & DevOps",
+      skills: [
+        "GCP Cloud Run",
+        "Cloud SQL",
+        "Cloud Build",
+        "GitHub Actions",
+        "CI/CD",
+        "Git",
+        "Vercel",
+      ],
+    },
+    {
+      title: "Integrations & Data",
+      skills: [
+        "Stripe",
+        "OAuth & JWT",
+        "Firebase",
+        "Supabase",
+        "Power BI",
+        "Tableau",
         "Excel",
       ],
     },
@@ -109,7 +146,7 @@ function Skills() {
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={containerVariants}
           >
             {skillCategories.map((category, index) => (

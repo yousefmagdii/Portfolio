@@ -9,9 +9,9 @@ function Home() {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [startTypewriter, setStartTypewriter] = useState(false);
 
-  const mainText = "Hi, I'm Youssef Magdy";
+  const mainText = "Hi, I'm Yousef Magdy";
   const subtitleText =
-    "Front-End Developer creating fast, and accessible web experiences";
+    "Software & AI Engineer building LLM platforms and fast web apps";
   const handleImageLoad = () => {
     setImageLoaded(true);
     setTimeout(() => setStartTypewriter(true), 300);
@@ -81,7 +81,7 @@ function Home() {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
                     <a
                       href="/CV.pdf"
-                      download="Youssef_Magdy_CV.pdf"
+                      download="Yousef_Magdy_CV.pdf"
                       className="cursor-pointer relative bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl overflow-hidden group inline-block text-center"
                     >
                       <span className="relative z-10">Download CV</span>

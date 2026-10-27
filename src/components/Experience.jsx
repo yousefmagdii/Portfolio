@@ -1,12 +1,65 @@
 function Experience() {
   const experiences = [
     {
+      title: "Software and AI Engineer",
+      company: "Al-Andalus Group LTD for Islamic Translation",
+      location: "United Kingdom (Remote from Cairo, Egypt)",
+      period: "06/2026 – Present",
+      description:
+        "Building a production LLM translation platform: a multi-agent LangGraph pipeline, tenant-scoped RAG and a five-service deployment on GCP Cloud Run (Next.js front end, .NET 8 API, FastAPI, embedding service and workers) on PostgreSQL.",
+      technologies: [
+        "LangGraph",
+        "Python",
+        "FastAPI",
+        ".NET 8",
+        "Next.js",
+        "PostgreSQL",
+        "pgvector",
+        "GCP Cloud Run",
+        "GitHub Actions",
+        "Stripe",
+      ],
+      achievements: [
+        "Built a LangGraph pipeline of 28 agents (translation, review, QC, transcription, dubbing) across OpenAI, Claude, Gemini and Ollama",
+        "Raised short Bible verse recall from 23.6% to 80.4% with no false positives (5,899 test cases) and cut latency from 75 ms to 22 ms",
+        "Implemented tenant-scoped RAG with bge-m3 embeddings and an HNSW index on PostgreSQL with pgvector",
+        "Built layout-preserving DOCX, PDF and InDesign translation",
+        "Moved a five-minute PDF export to a job queue, cutting job pickup time from 97 s to 1.9 s",
+        "Built Stripe billing (Checkout, webhooks, subscriptions) with CI/CD through GitHub Actions and Cloud Build",
+      ],
+    },
+    {
+      title: "Technical Support Specialist",
+      company: "Teleperformance (TP)",
+      location: "Cairo, Egypt",
+      period: "10/2025 – 06/2026",
+      description:
+        "Provided English-language Tier 1 technical support for a major telecommunications client.",
+      technologies: ["Troubleshooting", "CRM Systems", "SLA KPIs"],
+      achievements: [
+        "Documented cases in CRM systems",
+        "Worked to SLA KPIs: AHT, FCR and CSAT",
+      ],
+    },
+    {
+      title: "Freelance Web Developer",
+      company: "Self-employed",
+      location: "Remote",
+      period: "03/2025 – 10/2025",
+      description:
+        "Delivered freelance web development projects while completing a Data Analyst Bootcamp.",
+      technologies: ["React", "SQL", "Power BI", "Tableau", "Excel"],
+      achievements: [
+        "Completed the Data Analyst Bootcamp by Alex the Analyst",
+      ],
+    },
+    {
       title: "Front-End Developer",
       company: "VODO",
       location: "Riyadh, Saudi Arabia (Remote from Cairo, Egypt)",
-      period: "01/2024 – Present",
+      period: "01/2024 – 03/2025",
       description:
-        "Developed and maintained dynamic web interfaces using React and Redux. Integrated REST APIs, optimized app performance, and ensured cross-browser compatibility. Collaborated closely with backend and design teams to deliver responsive, scalable UI.",
+        "Built React applications for ERP, e-commerce and event platforms in a microfrontend architecture. Designed and consumed REST API contracts with backend engineers (endpoint shape, schema validation, pagination, filtering and error states) and delivered in Agile sprints.",
       technologies: [
         "React",
         "Redux Toolkit",
@@ -47,7 +100,7 @@ function Experience() {
         "Delivered several production-level projects",
         "Led development of Warehouse module in ERP system",
         "Optimized application performance and cross-browser compatibility",
-        "Integrated multiple payment systems including Stripe",
+        "Integrated Stripe, Firebase and Supabase into React applications",
       ],
     },
   ];

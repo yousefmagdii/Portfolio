@@ -33,7 +33,7 @@ function Navbar({ currentSection, onNavigate, sections }) {
             >
               <motion.img
                 src="/Logo.webp"
-                alt="Youssef Magdy Logo"
+                alt="Yousef Magdy Logo"
                 className="h-10 w-10 rounded-full object-cover"
                 loading="lazy"
                 initial={{ scale: 0, opacity: 0 }}
@@ -60,7 +60,7 @@ function Navbar({ currentSection, onNavigate, sections }) {
                 }}
               >
                 <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                  Youssef
+                  Yousef
                 </span>
                 Magdy
               </motion.h1>
@@ -192,7 +192,7 @@ function Navbar({ currentSection, onNavigate, sections }) {
 
               <a
                 href="/CV.pdf"
-                download="Youssef_Magdy_CV.pdf"
+                download="Yousef_Magdy_CV.pdf"
                 className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 hover:from-blue-600 hover:to-purple-700 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105"
               >
                 <span className="relative z-10">Download CV</span>
@@ -318,7 +318,7 @@ function Navbar({ currentSection, onNavigate, sections }) {
           </button>
           <a
             href="/CV.pdf"
-            download="Youssef_Magdy_CV.pdf"
+            download="Yousef_Magdy_CV.pdf"
             className="bg-gradient-to-r from-blue-500 to-purple-600 text-white block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:from-blue-600 hover:to-purple-700 text-center mt-2"
             onClick={toggleMenu}
           >
