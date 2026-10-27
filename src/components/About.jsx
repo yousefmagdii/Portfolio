@@ -18,35 +18,37 @@ function About() {
                 My Story as a Developer
               </h2>
               <p className="text-gray-300 leading-relaxed">
-                Frontend Developer with over 1 year of professional experience
-                building modern, responsive web applications. Passionate about
-                designing intuitive interfaces and delivering seamless user
-                experiences using the latest technologies.
+                Software and AI Engineer at Al-Andalus Group LTD, where I built
+                a production LLM translation platform: a LangGraph pipeline of
+                28 agents across OpenAI, Claude, Gemini and Ollama, tenant-scoped
+                RAG on PostgreSQL with pgvector, and a five-service deployment on
+                GCP Cloud Run.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                Specialized in the React ecosystem and state management, with
-                hands-on experience creating scalable, maintainable
-                applications. Focused on writing clean, performance-optimized
-                code and always eager to learn and adopt new frontend trends.
+                Before that I was a Frontend Developer at VODO, shipping React
+                applications for ERP, e-commerce and event platforms and owning
+                the ERP Warehouse module end to end, and a Technical Support
+                Specialist at Teleperformance. Based in Cairo, open to remote,
+                hybrid and on-site roles in Egypt and the GCC.
               </p>
               <div className="flex flex-wrap gap-3">
                 <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                  React
+                  LangGraph
                 </span>
                 <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                  Redux Toolkit
+                  RAG
                 </span>
                 <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
-                  JavaScript
+                  Python
                 </span>
                 <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
-                  HTML
+                  .NET 8
                 </span>
                 <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">
-                  CSS
+                  React & Next.js
                 </span>
                 <span className="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">
-                  Tailwind CSS
+                  GCP
                 </span>
               </div>
             </div>
@@ -56,11 +58,11 @@ function About() {
                 Quick Facts
               </h3>
               <ul className="space-y-3 text-gray-300">
-                <li>🎓 Frontend Development Specialist</li>
-                <li>💻 1+ Years Professional Experience</li>
-                <li>⚛️ React & Redux Toolkit Expert</li>
-                <li>� Responsive Design Enthusiast</li>
-                <li>🚀 Modern JavaScript Developer</li>
+                <li>🤖 Software & AI Engineer at Al-Andalus Group LTD</li>
+                <li>🧠 Built a 28-agent LangGraph LLM pipeline</li>
+                <li>📈 Raised recall from 23.6% to 80.4% with no false positives</li>
+                <li>⚛️ Shipped production React apps at VODO</li>
+                <li>🎓 B.Sc. Computer Science, GPA 3.07 / 4.0</li>
               </ul>
             </div>
           </div>

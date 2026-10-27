@@ -19,7 +19,16 @@ function Education() {
 
   const certificates = [
     {
-      name: "React - The Complete Guide",
+      name: "Data Analyst Bootcamp",
+      issuer: "Alex the Analyst",
+      date: "2025",
+      credentialId: "Certified",
+      description:
+        "Hands-on bootcamp covering data cleaning, querying, analysis and dashboarding.",
+      skills: ["SQL", "Power BI", "Tableau", "Excel"],
+    },
+    {
+      name: "Modern React with Redux",
       issuer: "Udemy",
       date: "2023",
       credentialId: "Certified",
