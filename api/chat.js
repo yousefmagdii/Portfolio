@@ -118,12 +118,13 @@ export default async function handler(req, res) {
         },
       );
       data = await response.json().catch(() => ({}));
-      if (response.status !== 404) break;
+      // Retired (404) or overloaded (500/503): try the next model.
+      if (![404, 500, 503].includes(response.status)) break;
     }
 
     if (!response.ok) {
       console.error("Gemini error", response.status, data?.error?.message);
-      const busy = response.status === 429;
+      const busy = [429, 503].includes(response.status);
       return res.status(busy ? 429 : 502).json({
         error: busy
           ? "The assistant is busy right now. Please try again in a minute."
