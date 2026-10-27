@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import CvMenu, { cvs } from "./CvMenu";
 
 function Navbar({ currentSection, onNavigate, sections }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,146 +68,39 @@ function Navbar({ currentSection, onNavigate, sections }) {
             </button>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="flex items-center space-x-6">
-              <button
-                onClick={() => handleNavClick(0)}
-                className={`font-medium text-sm relative group transition-colors duration-200 ${
-                  isActive("/")
-                    ? "text-white"
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                Home
-                <span
-                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transform transition-transform duration-200 ${
-                    isActive("/")
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
+              {sections.map((section, index) => (
+                <button
+                  key={section.id}
+                  onClick={() => handleNavClick(index)}
+                  className={`font-medium text-sm relative group transition-colors duration-200 ${
+                    isActive(section.path)
+                      ? "text-white"
+                      : "text-gray-300 hover:text-white"
                   }`}
-                ></span>
-              </button>
-              <button
-                onClick={() => handleNavClick(1)}
-                className={`font-medium text-sm relative group transition-colors duration-200 ${
-                  isActive("/about")
-                    ? "text-white"
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                About
-                <span
-                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transform transition-transform duration-200 ${
-                    isActive("/about")
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  }`}
-                ></span>
-              </button>
-              <button
-                onClick={() => handleNavClick(2)}
-                className={`font-medium text-sm relative group transition-colors duration-200 ${
-                  isActive("/skills")
-                    ? "text-white"
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                Skills
-                <span
-                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transform transition-transform duration-200 ${
-                    isActive("/skills")
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  }`}
-                ></span>
-              </button>
-              <button
-                onClick={() => handleNavClick(3)}
-                className={`font-medium text-sm relative group transition-colors duration-200 ${
-                  isActive("/projects")
-                    ? "text-white"
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                Projects
-                <span
-                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transform transition-transform duration-200 ${
-                    isActive("/projects")
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  }`}
-                ></span>
-              </button>
-              <button
-                onClick={() => handleNavClick(4)}
-                className={`font-medium text-sm relative group transition-colors duration-200 ${
-                  isActive("/experience")
-                    ? "text-white"
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                Experience
-                <span
-                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transform transition-transform duration-200 ${
-                    isActive("/experience")
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  }`}
-                ></span>
-              </button>
-              <button
-                onClick={() => handleNavClick(5)}
-                className={`font-medium text-sm relative group transition-colors duration-200 ${
-                  isActive("/education")
-                    ? "text-white"
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                Education
-                <span
-                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transform transition-transform duration-200 ${
-                    isActive("/education")
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  }`}
-                ></span>
-              </button>
+                >
+                  {section.name}
+                  <span
+                    className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transform transition-transform duration-200 ${
+                      isActive(section.path)
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  ></span>
+                </button>
+              ))}
 
-              <button
-                onClick={() => handleNavClick(6)}
-                className={`font-medium text-sm relative group transition-colors duration-200 ${
-                  isActive("/contact")
-                    ? "text-white"
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                Contact
-                <span
-                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transform transition-transform duration-200 ${
-                    isActive("/contact")
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  }`}
-                ></span>
-              </button>
-
-              <a
-                href="/CV.pdf"
-                download="Yousef_Magdy_CV.pdf"
-                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 hover:from-blue-600 hover:to-purple-700 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105"
-              >
-                <span className="relative z-10">Download CV</span>
-              </a>
+              <CvMenu buttonClassName="cta-glow px-6 py-2.5 rounded-full text-sm font-medium" />
             </div>
           </div>
-
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={toggleMenu}
               type="button"
               className="text-gray-300 hover:text-white p-2 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               aria-controls="mobile-menu"
-              aria-expanded="false"
+              aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -242,88 +136,38 @@ function Navbar({ currentSection, onNavigate, sections }) {
         </div>
       </div>
       <div
-        className={`${isMenuOpen ? "block" : "hidden"} md:hidden border-t border-white/10`}
+        className={`${isMenuOpen ? "block" : "hidden"} lg:hidden border-t border-white/10`}
         id="mobile-menu"
       >
         <div className="px-4 pt-4 pb-6 space-y-1 bg-black/90 backdrop-blur-md">
-          <button
-            onClick={() => handleNavClick(0)}
-            className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive("/")
-                ? "text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            Home
-          </button>
-          <button
-            onClick={() => handleNavClick(1)}
-            className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive("/about")
-                ? "text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            About
-          </button>
-          <button
-            onClick={() => handleNavClick(2)}
-            className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive("/skills")
-                ? "text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            Skills
-          </button>
-          <button
-            onClick={() => handleNavClick(4)}
-            className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive("/experience")
-                ? "text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            Experience
-          </button>
-          <button
-            onClick={() => handleNavClick(5)}
-            className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive("/education")
-                ? "text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            Education
-          </button>
-          <button
-            onClick={() => handleNavClick(3)}
-            className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive("/projects")
-                ? "text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            Projects
-          </button>
-          <button
-            onClick={() => handleNavClick(6)}
-            className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive("/contact")
-                ? "text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
-                : "text-gray-300 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            Contact
-          </button>
-          <a
-            href="/CV.pdf"
-            download="Yousef_Magdy_CV.pdf"
-            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:from-blue-600 hover:to-purple-700 text-center mt-2"
-            onClick={toggleMenu}
-          >
+          {sections.map((section, index) => (
+            <button
+              key={section.id}
+              onClick={() => handleNavClick(index)}
+              className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                isActive(section.path)
+                  ? "text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
+                  : "text-gray-300 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              {section.name}
+            </button>
+          ))}
+          <p className="px-4 pt-4 pb-1 text-xs uppercase tracking-wider text-gray-500">
             Download CV
-          </a>
+          </p>
+          {cvs.map((cv) => (
+            <a
+              key={cv.file}
+              href={cv.file}
+              download
+              className="block px-4 py-3 rounded-lg text-sm transition-all duration-200 text-gray-300 hover:text-white bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 border border-white/5"
+              onClick={toggleMenu}
+            >
+              <span className="font-medium text-white">{cv.title}</span>
+              <span className="block text-xs text-gray-400">{cv.subtitle}</span>
+            </a>
+          ))}
         </div>
       </div>
     </nav>

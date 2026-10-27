@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import About from "./About";
+import FeaturedWork from "./FeaturedWork";
 import Skills from "./Skills";
 import Projects from "./Projects";
 import Experience from "./Experience";
@@ -15,6 +16,12 @@ import StarBackground from "./StarBackground";
 const sections = [
   { id: "home", path: "/", component: Home, name: "Home" },
   { id: "about", path: "/about", component: About, name: "About" },
+  {
+    id: "featured",
+    path: "/featured",
+    component: FeaturedWork,
+    name: "AI Work",
+  },
   { id: "skills", path: "/skills", component: Skills, name: "Skills" },
   { id: "projects", path: "/projects", component: Projects, name: "Projects" },
   {
@@ -44,7 +51,7 @@ function ScrollPortfolio() {
 
   useEffect(() => {
     const sectionIndex = sections.findIndex(
-      (section) => section.path === location.pathname
+      (section) => section.path === location.pathname,
     );
     if (sectionIndex !== -1 && sectionIndex !== currentSection) {
       setCurrentSection(sectionIndex);
@@ -87,7 +94,7 @@ function ScrollPortfolio() {
         }, 1000);
       }
     },
-    [currentSection, navigate]
+    [currentSection, navigate],
   );
 
   const handleWheel = (e) => {
@@ -172,7 +179,7 @@ function ScrollPortfolio() {
           e.preventDefault();
           navigateToSection(
             sections.length - 1,
-            currentSection < sections.length - 1 ? "down" : null
+            currentSection < sections.length - 1 ? "down" : null,
           );
           break;
       }

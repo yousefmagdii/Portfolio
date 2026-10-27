@@ -133,7 +133,7 @@ function Projects() {
                         e.stopPropagation();
                         window.open(project.liveUrl, "_blank");
                       }}
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 text-white px-3 py-2 rounded-lg text-sm transition-all duration-300 transform active:scale-95 font-medium"
+                      className="cta-glow cta-glow-blue flex-1 px-3 py-2 rounded-lg text-sm font-medium"
                     >
                       Live Demo
                     </button>
@@ -142,7 +142,7 @@ function Projects() {
                         e.stopPropagation();
                         window.open(project.githubUrl, "_blank");
                       }}
-                      className="flex-1 bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 hover:scale-105 hover:shadow-lg hover:shadow-gray-500/25 text-white px-3 py-2 rounded-lg text-sm transition-all duration-300 transform active:scale-95 font-medium border border-white/10"
+                      className="cta-glow cta-glow-white flex-1 px-3 py-2 rounded-lg text-sm font-medium"
                     >
                       GitHub
                     </button>
@@ -210,7 +210,7 @@ function Projects() {
                       e.stopPropagation();
                       window.open(selectedProject.liveUrl, "_blank");
                     }}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-110 hover:shadow-xl hover:shadow-blue-500/30 text-white px-8 py-3 rounded-xl transition-all duration-300 transform active:scale-95 flex items-center gap-3 font-medium"
+                    className="cta-glow cta-glow-blue px-8 py-3 rounded-xl flex items-center gap-3 font-medium"
                   >
                     🚀 Live Demo
                   </button>
@@ -219,7 +219,7 @@ function Projects() {
                       e.stopPropagation();
                       window.open(selectedProject.githubUrl, "_blank");
                     }}
-                    className="bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 hover:scale-110 hover:shadow-xl hover:shadow-gray-500/30 text-white px-8 py-3 rounded-xl transition-all duration-300 transform active:scale-95 flex items-center gap-3 font-medium border border-white/10"
+                    className="cta-glow cta-glow-white px-8 py-3 rounded-xl flex items-center gap-3 font-medium"
                   >
                     📁 GitHub
                   </button>
