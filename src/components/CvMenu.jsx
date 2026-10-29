@@ -8,6 +8,11 @@ export const cvs = [
     file: "/cv/Yousef_Magdy_AI_Application_Engineer_CV.pdf",
   },
   {
+    title: "Software Developer",
+    subtitle: "React, Next.js, .NET 8, Node.js, Python",
+    file: "/cv/Yousef_Magdy_Software_Developer_CV.pdf",
+  },
+  {
     title: "Frontend Developer",
     subtitle: "React, Next.js, TypeScript, Redux Toolkit",
     file: "/cv/Yousef_Magdy_Frontend_React_CV.pdf",
